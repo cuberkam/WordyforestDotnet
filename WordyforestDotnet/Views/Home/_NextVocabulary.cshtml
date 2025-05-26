@@ -1,0 +1,37 @@
+﻿@if (Model == null)
+{
+    <div class="alert alert-danger">Vocabulary list is empty.</div>
+}
+else
+{
+<table style="table-layout: auto; width: auto; border-collapse: collapse;" class="table table-bordered">
+    <tr>
+        <th>Word</th>
+        <td id="vocabularyWord">@Model.Word</td>
+    </tr>
+    <tr>
+        <th>Type</th>
+        <td>@Model.Type</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <th>Example</th>
+        <td>@Model.Example</td>
+    </tr>
+    <tr>
+        <th>Synonyms</th>
+        @if (Model.Synonyms != null)
+		{
+            @foreach (var synonym in Model.Synonyms)
+            {
+                <td>
+                    @(string.Join(" | ", synonym.Words))
+                </td>
+            }
+        }
+    </tr>
+</table>
+}
