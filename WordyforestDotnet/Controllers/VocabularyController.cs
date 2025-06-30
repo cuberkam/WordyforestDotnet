@@ -34,7 +34,7 @@ namespace WordyforestDotnet.Controllers
         }
 
         [Authorize]
-        [HttpPost("add")]
+        [HttpPost()]
         public async Task<IActionResult> Add([FromBody] VocabulariesRequest request)
         {
             var addVocabularyToVocabulariesList = await _vocabularyService.AddVocabularyToVocabulariesList(request.VocabulariesListId, request.VocabularyId);
@@ -51,13 +51,13 @@ namespace WordyforestDotnet.Controllers
         }
 
         [Authorize]
-        [HttpDelete("remove")]
+        [HttpDelete()]
         public async Task<IActionResult> Remove([FromBody] VocabulariesRequest request)
         {
             var removedVocabulary = await _vocabularyService.RemoveVocabularyFromVocabulariesList(request.VocabulariesListId, request.VocabularyId);
             if (removedVocabulary == false) return NotFound();
 
-            return Ok();
+            return NoContent();
         }
     }
 }
